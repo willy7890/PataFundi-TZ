@@ -5,7 +5,7 @@ from datetime import datetime
 import re
 
 class CreateUser(BaseModel):
-    phone:str=Field(example="+225618982523")
+    phone:str="+225618982523"
     email:EmailStr
     password:str
     role:RoleCheck
@@ -13,8 +13,8 @@ class CreateUser(BaseModel):
     @field_validator("phone")
     @staticmethod
     def phone(cls,value):
-        if  not len(value) == 12:
-            raise ValueError("phone must have 12 number")
+        if  not len(value) == 13:
+            raise ValueError("phone must have 13 number")
         if not value.startswith("+225"):
             raise ValueError("phone must stat with +225......")
         return value
