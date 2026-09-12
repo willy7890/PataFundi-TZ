@@ -121,4 +121,41 @@ class UserServices():
             "revoked":revoked
         }
         
+    @staticmethod
+    def all_user(db:Session):
+        user=db.query(User).all()    
+        return user
+    
+    @staticmethod
+    def update(data:UserUpdate,db:Session,current_user):
+        user=db.query(User).filter(User.id==current_user.id).first()
+        if data.email:
+            user.email=data.email
+        if data.phone:
+            user.phone=data.phone
+        if data.role:
+            user.role=data.role
+            
+        db.commit()        
+        db.refresh(user)
+        
+        return user
+    
+    @staticmethod
+    def changePassword(old_password:str,new_password:str,db:Session,current_user):
+        user=db.query(User).filter(User.id==current_user.id).first()
+        if old_password==new_password:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="password might not the same")        
+        
+        if not verify_password(old_password,user.password):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="wrong old password")
+
+        user.password==hash_password(new_password)
+        db.commit()
+        db.refresh(user)
+        
+        return {
+            "message":"password is succesfuly updated"
+        }
+        
     
