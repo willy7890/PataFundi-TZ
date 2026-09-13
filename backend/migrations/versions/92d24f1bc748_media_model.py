@@ -1,8 +1,8 @@
-"""customr  module
+"""media model
 
-Revision ID: 9942aa37c970
-Revises: e571f7373056
-Create Date: 2026-08-30 06:15:58.031917
+Revision ID: 92d24f1bc748
+Revises: bb5153b9bc4f
+Create Date: 2026-09-11 13:48:52.337365
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '9942aa37c970'
-down_revision: Union[str, Sequence[str], None] = 'e571f7373056'
+revision: str = '92d24f1bc748'
+down_revision: Union[str, Sequence[str], None] = 'bb5153b9bc4f'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
